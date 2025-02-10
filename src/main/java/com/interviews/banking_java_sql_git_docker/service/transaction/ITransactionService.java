@@ -6,6 +6,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public interface ITransactionService {
-    public Transaction createTransaction(Transaction.TransactionType transactionType, Long accountId, BigDecimal amount);
-    public List<Transaction> getAccountTransactions(Long accountId);
+    Transaction createTransaction(Transaction.TransactionType transactionType, Long accountId, BigDecimal amount);
+    List<Transaction> getAccountTransactions(Long accountId);
 }

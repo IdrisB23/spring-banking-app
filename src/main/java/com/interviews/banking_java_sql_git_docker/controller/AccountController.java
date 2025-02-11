@@ -50,6 +50,18 @@ public class AccountController  {
                 .body(new ApiResponse("Accounts retrieved", accounts));
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<ApiResponse> searchAccounts(
+            @RequestParam(defaultValue = "") String accountHolderName,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Account> accounts = accountService.searchAccounts(accountHolderName, pageable);
+        return ResponseEntity.status(HttpStatus.FOUND)
+                .body(new ApiResponse("Accounts retrieved", accounts));
+    }
+
     @PostMapping("/{accountId}/transaction")
     public ResponseEntity<ApiResponse> createTransaction(@PathVariable Long accountId, @RequestParam String transactionType, @RequestParam BigDecimal amount) {
         try {

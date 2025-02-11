@@ -10,4 +10,5 @@ public interface IAccountService {
     Account createAccount(@Valid CreateAccountRequest request);
     Account getAccount(Long accountId);
     Page<Account> getAllAccounts(Pageable pageable);
+    Page<Account> searchAccounts(String accountHolderName, Pageable pageable);
 }

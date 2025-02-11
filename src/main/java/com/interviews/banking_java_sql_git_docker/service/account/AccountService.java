@@ -1,6 +1,5 @@
 package com.interviews.banking_java_sql_git_docker.service.account;
 
-import com.interviews.banking_java_sql_git_docker.exceptions.ResourceAlreadyExistsException;
 import com.interviews.banking_java_sql_git_docker.exceptions.ResourceNotFoundException;
 import com.interviews.banking_java_sql_git_docker.model.Account;
 import com.interviews.banking_java_sql_git_docker.repository.AccountRepository;
@@ -41,5 +40,10 @@ public class AccountService implements IAccountService {
     @Override
     public Page<Account> getAllAccounts(Pageable pageable) {
         return accountRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Account> searchAccounts(String accountHolderName, Pageable pageable) {
+        return accountRepository.findAccountByAccountHolderNameContaining(accountHolderName, pageable);
     }
 }
